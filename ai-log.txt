@@ -1,0 +1,6 @@
+Prompt: // Add a new object to this.stickies what is the syntax
+AI Response: this.stickies.push({
+  id: 1,
+  title: "New Sticky",
+  content: "This is a note"
+});
