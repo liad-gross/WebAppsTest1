@@ -6,6 +6,18 @@ AI Response: this.stickies.push({
   content: "This is a note"
 });
 
+Prompt: "why arent notes visible?"
+AI Response: In addStickie() you're using id before you declare it:
+javascript// ❌ Your current code — id is used before it exists
+addStickie() {
+    this.stickies.push({ id, text: "" });  // id is undefined here!
+    const id = crypto.randomUUID          // declared too late
+        ? crypto.randomUUID()
+        : String(Date.now() + Math.random());
+},
+Fix — just swap the order:
+
+
 Commit 4:
 Prompt: " what is json.parse format?"
 AI Response: Basic Syntax
