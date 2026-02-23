@@ -30,6 +30,7 @@ Vue.createApp({
         //
         // In Commit 4:
         // - Replace this with a call to loadFromStorage().
+        this.loadFromStorage();
     },
 
     methods: {
@@ -44,13 +45,13 @@ Vue.createApp({
             //
             // Required structure:
             // { id: ..., text: "" }
-            this.stickies.push({ id, text: "" });
             // For id:
             // - Use crypto.randomUUID() if available
             // - Otherwise use a fallback (Date.now() + Math.random())
             const id = crypto.randomUUID
                 ? crypto.randomUUID()
                 : String(Date.now() + Math.random());
+            this.stickies.push({ id, text: "" });
         },
 
         deleteStickie(id) {
@@ -95,6 +96,7 @@ Vue.createApp({
             //
             // Must use:
             // JSON.stringify(...)
+            localStorage.setItem(this.storageKey, JSON.stringify(this.stickies));
         },
 
         loadFromStorage() {
@@ -104,7 +106,10 @@ Vue.createApp({
             // Must:
             // - Use JSON.parse(...)
             // - If nothing exists, set this.stickies = []
-            //
+
+            const raw = localStorage.getItem(this.storageKey);
+            this.stickies = raw ? JSON.parse(raw) : [];
+
             // In Commit 4:
             // - Call this method from mounted().
             // - Remove hard-coded notes from Commit 2.
@@ -117,6 +122,7 @@ Vue.createApp({
                 // TODO (Commit 4):
                 // Call this.saveToStorage() here so edits
                 // auto-save without clicking any button.
+                this.saveToStorage();
             },
             deep: true
         }

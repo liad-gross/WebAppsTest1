@@ -1,6 +1,17 @@
+Commit 3:
 Prompt: // Add a new object to this.stickies what is the syntax
 AI Response: this.stickies.push({
   id: 1,
   title: "New Sticky",
   content: "This is a note"
 });
+
+Commit 4:
+Prompt: " what is json.parse format?"
+AI Response: Basic Syntax
+JSON.parse(text)
+
+text → must be a valid JSON string
+
+Returns → JavaScript object / array
+
